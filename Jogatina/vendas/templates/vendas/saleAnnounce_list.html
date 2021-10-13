@@ -1,0 +1,22 @@
+{% extends "vendas/base.html" %}
+
+{% block title %}Cartas e baralhos a venda{% endblock %}
+
+{% block content %}
+    <h1>Cartas e baralhos a venda:</h1>
+    {% for saleannounce in saleannounce_list %}
+        <article>
+            <h2>
+                <a href="{{ saleannounce.get_absolute_url }}">
+                {{saleannounce.title}}
+                </a>
+            </h2>
+            <p class="date">
+                Adicionado em {{ saleannounce.date_announced }} por {{ saleannounce.vendor }}
+            </p>
+            {{ saleannounce.description|linebreaks|truncatewords:10 }}
+            <p>Estado: {{ saleannounce.state }}</p>
+            <p></p>Preço: R${{saleannounce.price}}</p>
+        </article>
+    {% endfor %}
+{% endblock %}

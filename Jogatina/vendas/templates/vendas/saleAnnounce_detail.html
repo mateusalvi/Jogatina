@@ -1,0 +1,16 @@
+{% extends "vendas/base.html" %}
+
+{% block title %} {{saleannounce.title}} {% endblock %}
+
+{% block content %}
+<h1>{{saleannounce.title}}</h1>
+<p class="date">
+    Adicionado em {{ saleannounce.date_announced }} por {{ saleannounce.vendor }}
+</p>
+{{ saleannounce.description|linebreaks }}
+<p>Estado: {{ saleannounce.state }}</p>
+<p><h2>Preço: R${{saleannounce.price}}</h2></p>
+
+{% endblock %}
+
+
