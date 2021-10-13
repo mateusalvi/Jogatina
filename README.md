@@ -4,5 +4,5 @@ venda, compra, troca e empréstimo de jogos de cartas, ou até mesmo cartas
 unitárias.
 
 # Linguagem e framework
-O software é desenvolvido usando-se Python 3 e o framework Django.
+O software é desenvolvido usando-se Python 3 e o framework Django.  
 https://www.python.org/ / https://www.djangoproject.com/
