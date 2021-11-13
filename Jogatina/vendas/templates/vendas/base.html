@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 
+
+
 <head>
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
     <header>
-        <h1>Jogatina 🃏</h1>
+        <h1>Jogatina 🃏 <a href="{% url 'vendas:list' %}">Vendas</a></h1>
+            <h3>{% if user.is_authenticated %}
+                         Hi {{ user.username }}!
+                         <a href="{% url 'logout' %}">Log Out</a>
+                         <p><a href="{% url 'vendas:createSaleAnnounce' %}">Cadastro de produto</a></p>
+                    {% else %}      
+                        <p>You are not logged in</p>
+                        <a href="{% url 'login' %}">Log In</a>
+                        
+                        <a href="{% url 'vendas:signup' %}">Sign Up</a>
+                        
+                    {% endif %}</h3>
     </header>
 
     <body>

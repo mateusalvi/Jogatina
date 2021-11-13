@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+
+from django.template.defaultfilters import slugify
 # Create your models here.
 
 ESTADO = (
@@ -23,3 +25,10 @@ class saleAnnounce (models.Model): #banco de dados de anúncios de vendas
 
     def get_absolute_url(self):
         return reverse("vendas:detail", kwargs={'slug': self.slug})
+        
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Newly created object, so set slug
+            self.slug = slugify(self.title)
+
+        super(saleAnnounce, self).save(*args, **kwargs)
