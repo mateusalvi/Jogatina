@@ -11,7 +11,11 @@
 <p>Estado: {{ saleannounce.state }}</p>
 <p>Quantidade disponível: {{ saleannounce.quatity}}</p>
 <p><h2>Preço: R${{saleannounce.price}}</h2></p>
-<p>COMPRAR</p>
+
+<form action="{{ saleannounce.get_compra_url }}">
+    <input type="submit" value="COMPRAR" />
+</form>
+
 
 {% endblock %}
 

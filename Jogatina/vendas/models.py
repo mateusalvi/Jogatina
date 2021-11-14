@@ -10,6 +10,11 @@ ESTADO = (
     ('usado','Usado'),
 )
 
+STATUS  = (
+    ('pendente','Pendente'),
+    ('completa','Completa')
+)
+
 class saleAnnounce (models.Model): #banco de dados de anúncios de vendas
     title = models.CharField(max_length=255) #nome do anúncio
     slug = models.SlugField(max_length=255, unique=True) #nome do url unico de cada venda
@@ -25,10 +30,21 @@ class saleAnnounce (models.Model): #banco de dados de anúncios de vendas
 
     def get_absolute_url(self):
         return reverse("vendas:detail", kwargs={'slug': self.slug})
+
+    def get_compra_url(self):
+        return reverse("vendas:compra", kwargs={'ttitle': self.title})
         
     def save(self, *args, **kwargs):
         if not self.id:
             # Newly created object, so set slug
             self.slug = slugify(self.title)
-
         super(saleAnnounce, self).save(*args, **kwargs)
+
+class transactions (models.Model):
+    date = models.DateField(auto_now_add=True)
+    vendor = models.ForeignKey(User, on_delete=models.CASCADE,related_name='seller')
+    customer = models.ForeignKey(User, on_delete=models.CASCADE,related_name='buyer')
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    status = models.CharField(max_length=8, choices=STATUS, default='completa')
+
+        

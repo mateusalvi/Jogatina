@@ -1,0 +1,11 @@
+{% extends "vendas/base.html" %}
+
+{% block content %}
+    <body>
+        <form action="" method="post">
+            <h3>Voce deseja comprar: {{ sale.title }}</h3>
+            {% csrf_token %}
+            <input type="submit" value="Sim">
+         </form>
+    </body>
+{% endblock %}

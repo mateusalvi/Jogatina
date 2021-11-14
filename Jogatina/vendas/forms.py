@@ -1,6 +1,5 @@
-import datetime
 from django.forms import ModelForm
-from vendas.models import saleAnnounce
+from vendas.models import saleAnnounce,transactions
 
 class createSaleAnnounce(ModelForm):
 
@@ -8,3 +7,7 @@ class createSaleAnnounce(ModelForm):
         model = saleAnnounce
         fields = ['title','description','state','quatity','price']
 
+class createCompra(ModelForm):
+    class Meta:
+        model = transactions
+        fields = []

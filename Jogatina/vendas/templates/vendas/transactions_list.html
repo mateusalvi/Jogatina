@@ -1,0 +1,17 @@
+{% extends "vendas/base.html" %}
+
+{% block content %}
+    <h1>Historico de transacoes:</h1>
+    {% for transactions in transactions_list %}
+        <article>
+            <p>Comprador: {{ transactions.customer }}</p>
+            <p>Vendedor: {{ transactions.vendor }}</p>
+            <p>Valor: {{ transactions.price }}</p>
+            <p>Status: {{ transactions.status }}</p>
+            <p class="date">
+                Comprado em {{ transactions.date }}
+            </p>
+        </article>
+            <p>---------------------------------------------</p>
+    {% endfor %}
+{% endblock %}
