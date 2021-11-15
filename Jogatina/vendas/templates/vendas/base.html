@@ -1,27 +1,95 @@
 <!DOCTYPE html>
+
 <html>
 
 
 
 <head>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            height: 4rem;
+        }
+
+        .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 0px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .display-flex-direita {
+            margin-right: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .display-flex-esquerda {
+            margin-left: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .jogatina {
+            font-size: 2rem;
+            transition: 0.5s;
+            align-items: center;
+        }
+
+        .jogatina:hover {
+            filter: brightness(1.7);
+            color: #f75146;
+        }
+    </style>
     <title>{% block title %}{% endblock %}</title>
 </head>
 
 <body>
     <header>
-        <h1>Jogatina 🃏 <a href="{% url 'vendas:list' %}">Vendas</a></h1>
-            <h3>{% if user.is_authenticated %}
-                         Hi {{ user.username }}!
-                         <a href="{% url 'logout' %}">Log Out</a>
-                         <p><a href="{% url 'vendas:createSaleAnnounce' %}">Cadastro de produto</a></p>
-                         <p><a href="{% url 'vendas:transactionsList' %}">Historico de transacoes</a></p>
-                    {% else %}      
-                        <p>You are not logged in</p>
-                        <a href="{% url 'login' %}">Log In</a>
-                        
-                        <a href="{% url 'vendas:signup' %}">Sign Up</a>
-                        
-                    {% endif %}</h3>
+        <div class="topnav">
+            <div class="direita display-flex-esquerda">
+                <h1 class="jogatina">Jogatina</h1>
+                <p style="font-size: 2rem">🃏</p>
+                <a href="{% url 'vendas:list' %}">Vendas</a>
+            </div>
+
+            <div class="direita display-flex-direita">
+                {% if user.is_authenticated %}
+
+                <p><a href="{% url 'vendas:createSaleAnnounce' %}">Cadastro de produto</a></p>
+                <p><a href="{% url 'vendas:transactionsList' %}">Historico de transacoes</a></p>
+                <b>Olá, {{ user.username }}!</b>
+                <a href="{% url 'logout' %}">Sair</a>
+                {% else %}
+                <a href="{% url 'login' %}">Entrar</a>
+                <a href="{% url 'vendas:signup' %}">Cadastre-se</a>
+                <p>Você não está logado</p>
+                {% endif %}
+            </div>
+
+        </div>
     </header>
 
     <body>
